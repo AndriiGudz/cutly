@@ -1,9 +1,10 @@
 import React from 'react'
+import { LoginScreen } from './src/screens/LoginScreen'
+import { StatusBar } from 'expo-status-bar'
+import { ThemeProvider } from './src/context/ThemeContext'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { ThemeProvider } from './src/context/ThemeContext'
 import { WelcomeScreen } from './src/screens/WelcomeScreen'
-import { StatusBar } from 'expo-status-bar'
 
 const Stack = createNativeStackNavigator()
 
@@ -11,7 +12,12 @@ export default function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Welcome"
             component={WelcomeScreen}
